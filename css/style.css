@@ -551,6 +551,14 @@ h6,
 .footer .copyright a:hover {
     color: var(--primary);
 }
+
+/* newly added css */
+.btn-primary{
+    background-color: #bd9773 !important;
+}
+.iconUpdated{
+    color: #bd9773  !important;
+}
 .MainLogo{
     height: 100px;
     width: 140px;
