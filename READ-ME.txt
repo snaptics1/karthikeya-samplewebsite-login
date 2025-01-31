@@ -1,8 +1,8 @@
-  =>  Template Name    : VAARAHI - Architecture HTML Template
+  =>  Template Name    : VAARAHI - Real Estate HTML Template
 
-  =>  Template Link    : https://htmlcodex.com/architecture-html-template
+  =>  Template Link    : https://htmlcodex.com/Real Estate-html-template
 
-  =>  Premium Version  : https://htmlcodex.com/architecture-html-template-pro
+  =>  Premium Version  : https://htmlcodex.com/Real Estate-html-template-pro
 
   =>  Template License : https://htmlcodex.com/license (or read the LICENSE.txt file)
 
