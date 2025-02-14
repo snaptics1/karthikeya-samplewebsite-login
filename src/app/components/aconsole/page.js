@@ -75,7 +75,7 @@ export default function Aconsle() {
               </div>
 
               
-    <div style={{padding:"0px 20px"}}>
+    <div style={{padding:"0px 21px"}}>
       <div className="ag-theme-alpine" style={{ height: "100vh", width: "100%" }}>
         <AgGridReact
           rowData={rowData}
