@@ -5,8 +5,9 @@ import { ClientSideRowModelModule, ValidationModule } from "ag-grid-community"; 
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../../../node_modules/ag-grid-community/styles/ag-grid.css";
 import "../../../../node_modules/ag-grid-community/styles/ag-theme-alpine.css";
-
+import { useRouter } from "next/navigation"; 
 export default function Aconsle() {
+  const router = useRouter(); 
   useEffect(() => {
     // Import Bootstrap JavaScript only on the client side
     if (typeof window !== "undefined") {
