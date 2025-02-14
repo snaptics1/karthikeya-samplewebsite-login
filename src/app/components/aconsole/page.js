@@ -5,9 +5,10 @@ import { ClientSideRowModelModule, ValidationModule } from "ag-grid-community"; 
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../../../node_modules/ag-grid-community/styles/ag-grid.css";
 import "../../../../node_modules/ag-grid-community/styles/ag-theme-alpine.css";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
+import PolarAreaChart from "@/app/cpanel/PolarAreaChart ";
 export default function Aconsle() {
-  const router = useRouter(); 
+  const router = useRouter();
   useEffect(() => {
     // Import Bootstrap JavaScript only on the client side
     if (typeof window !== "undefined") {
@@ -17,6 +18,7 @@ export default function Aconsle() {
   }, []);
 
   const [rowData, setRowData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   // Function to fetch user data from API
   const fetchUserData = async () => {
@@ -65,7 +67,12 @@ export default function Aconsle() {
     <>
       <div className="col-xl-12 d-flex justify-content-between align-items-center  py-4 px-4">
         <div className="d-flex gap-2 align-items-center">
-          <img className="DashboardIcon" style={{height:"40px",width:"40px"}} src="/dashboardicon.png" alt=""/>
+          <img
+            className="DashboardIcon"
+            style={{ height: "40px", width: "40px" }}
+            src="/dashboardicon.png"
+            alt=""
+          />
           <h4 className="font-semibold text-black">Dashboard</h4>
         </div>
         <button type="button" className="btn btn-danger" onClick={handleLogout}>
@@ -74,6 +81,13 @@ export default function Aconsle() {
       </div>
 
       <div style={{ padding: "0px 21px" }}>
+        {/* Button to trigger modal */}
+        <button
+          className="btn btn-primary my-3"
+          onClick={() => setShowModal(true)}
+        >
+          View In Pie Chart
+        </button>
         <div
           className="ag-theme-alpine"
           style={{ height: "100vh", width: "100%" }}
@@ -83,6 +97,40 @@ export default function Aconsle() {
             columnDefs={columnDefs}
             modules={[ClientSideRowModelModule, ValidationModule]} // Include ValidationModule here
           />
+        </div>
+
+        <div
+          className={`modal fade ${showModal ? "show d-block" : ""}`}
+          tabIndex="-1"
+          role="dialog"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Polar Area Chart</h5>
+                <button
+                  type="button"
+                  className="close"
+                  onClick={() => setShowModal(false)}
+                >
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <PolarAreaChart />
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setShowModal(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
