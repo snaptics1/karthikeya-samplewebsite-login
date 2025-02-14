@@ -6,9 +6,15 @@ import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../../../node_modules/ag-grid-community/styles/ag-grid.css";
 import "../../../../node_modules/ag-grid-community/styles/ag-theme-alpine.css";
 import { useRouter } from "next/navigation";
-import PolarAreaChart from "@/app/cpanel/PolarAreaChart ";
+import dynamic from "next/dynamic";
+const PolarAreaChart = dynamic(() => import("../../cpanel/PolarAreaChart "), {
+  ssr: false,
+});
+const BarChart = dynamic(() => import("../../cpanel/BarChart"), { ssr: false });
+
 export default function Aconsle() {
   const router = useRouter();
+
   useEffect(() => {
     // Import Bootstrap JavaScript only on the client side
     if (typeof window !== "undefined") {
@@ -18,7 +24,8 @@ export default function Aconsle() {
   }, []);
 
   const [rowData, setRowData] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showPolarChartModal, setShowPolarChartModal] = useState(false);
+  const [showBarChartModal, setShowBarChartModal] = useState(false);
 
   // Function to fetch user data from API
   const fetchUserData = async () => {
@@ -81,12 +88,19 @@ export default function Aconsle() {
       </div>
 
       <div style={{ padding: "0px 21px" }}>
-        {/* Button to trigger modal */}
         <button
           className="btn btn-primary my-3"
-          onClick={() => setShowModal(true)}
+          onClick={() => setShowPolarChartModal(true)}
         >
-          View In Pie Chart
+          View In Polar Area Chart
+        </button>
+
+        {/* Button to trigger Bar Chart modal */}
+        <button
+          className="btn btn-primary my-3 ms-2"
+          onClick={() => setShowBarChartModal(true)}
+        >
+          View In Bar Chart
         </button>
         <div
           className="ag-theme-alpine"
@@ -99,8 +113,9 @@ export default function Aconsle() {
           />
         </div>
 
+        {/* Polar Area Chart Modal */}
         <div
-          className={`modal fade ${showModal ? "show d-block" : ""}`}
+          className={`modal fade ${showPolarChartModal ? "show d-block" : ""}`}
           tabIndex="-1"
           role="dialog"
           style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
@@ -112,7 +127,7 @@ export default function Aconsle() {
                 <button
                   type="button"
                   className="close"
-                  onClick={() => setShowModal(false)}
+                  onClick={() => setShowPolarChartModal(false)}
                 >
                   <span>&times;</span>
                 </button>
@@ -124,7 +139,42 @@ export default function Aconsle() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => setShowModal(false)}
+                  onClick={() => setShowPolarChartModal(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bar Chart Modal */}
+        <div
+          className={`modal fade ${showBarChartModal ? "show d-block" : ""}`}
+          tabIndex="-1"
+          role="dialog"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Bar Chart</h5>
+                <button
+                  type="button"
+                  className="close"
+                  onClick={() => setShowBarChartModal(false)}
+                >
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <BarChart />
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setShowBarChartModal(false)}
                 >
                   Close
                 </button>
