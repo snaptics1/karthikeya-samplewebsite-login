@@ -10,7 +10,7 @@ export default function Aconsle() {
   useEffect(() => {
     // Import Bootstrap JavaScript only on the client side
     if (typeof window !== 'undefined') {
-      require('bootstrap/dist/js/bootstrap.bundle.min.js');
+      require('../../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js');
     }
     console.log("Component has mounted on the client side.");
   }, []);
