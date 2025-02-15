@@ -8,7 +8,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 const PolarAreaChart = () => {
   const options = {
     chart: {
-      type: "polarArea",
+      type: "pie",
     },
     series: [14, 23, 21, 17, 15, 10, 12, 17, 21],
     stroke: {
@@ -34,7 +34,7 @@ const PolarAreaChart = () => {
 
   return (
     <div id="chart">
-      <Chart options={options} series={options.series} type="polarArea" />
+      <Chart options={options} series={options.series} type="pie"  />
     </div>
   );
 };
