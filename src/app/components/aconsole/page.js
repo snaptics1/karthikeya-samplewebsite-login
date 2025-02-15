@@ -123,7 +123,7 @@ export default function Aconsle() {
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Polar Area Chart</h5>
+                <h5 className="modal-title">Pie Chart</h5>
                 <button
                   type="button"
                   className="close"
